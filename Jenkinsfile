@@ -1,15 +1,20 @@
 pipeline{
-    agent { any {image 'python:3.12.1-alpine3.19' } }
+    agent { any }
     stages {
-        stage('build'){
+        stage('install'){
             steps{
-                sh 'python --version'
-                sh 'pip install bandit'
+                sh 'apt-get install python'
+                sh 'pip install bandit, flake8'
             }
         }
         stage('Python Bandit Security Scan'){
             steps{
                 sh 'bandit *.py'
+            }
+        }
+        stage('Python flake8 Security Scan'){
+            steps{
+                sh 'flake8 *.py'
             }
         }
         stage ('run'){
