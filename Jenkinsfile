@@ -4,7 +4,7 @@ pipeline{
         stage('install'){
             steps{
                 sh 'sudo apt-get install python3'
-                sh 'pip3 install bandit, flake8'
+                sh 'pip3 install bandit flake8'
             }
         }
         stage('Python Bandit Security Scan'){
