@@ -4,6 +4,12 @@ pipeline{
         stage('build'){
             steps{
                 sh 'python --version'
+                sh 'pip install bandit'
+            }
+        }
+        stage('Python Bandit Security Scan'){
+            steps{
+                sh 'bandit *.py'
             }
         }
         stage ('run'){
