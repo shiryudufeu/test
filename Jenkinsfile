@@ -1,6 +1,15 @@
 pipeline{
     agent any
+    
+    environment {
+        SECRET_TEXT = credentials('secret_text')
+    }
     stages {
+        stage('build'){
+            steps{
+                sh 'echo "secret text is ${SECRET_TEXT}"'
+            }
+        }
         stage('install'){
             steps{
                 sh 'sudo apt-get install python3'
